@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <div id="ranking" class="container-sm">
+        <p class="lead">
+            ユーザー投稿の「きょうは何の日」データベース
+        </p>
+    </div>
+
+    <div class="container-sm chigau">
+        <p class="h4">{{month}}月{{day}}日</p>
+    </div>
+
+    <div class="container-sm accordion chigau" id="accordionExample">
+        {% for i in range(user_day_item_count) %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{i+1}}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{i+1}}" aria-expanded="false" aria-controls="collapse{{i+1}}">
+                    #{{i + 1}}　位
+                </button>
+                </h2>
+                <div id="collapse{{i+1}}" class="accordion-collapse collapse" aria-labelledby="heading{{i+1}}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body text-info">
+                        <strong>{{user_day_item_list[i]}}</strong>
+                        <strong id="votecount">{{user_day_vote_count[i]}}　票</strong>
+                        </br>
+                        <a href="https://www.google.com/search?q={{user_day_item_list[i]}}">{{user_day_item_list[i]}}とは</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if user_day_item_count < 3: %}
+            {% for i in range(3 - user_day_item_count): %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{i+10}}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{i+10}}" aria-expanded="true" aria-controls="collapse{{i+10}}">
+                            #{{user_day_item_count + i + 1}}　位
+                        </button>
+                    </h2>
+                    <div id="collapse{{i+10}}" class="accordion-collapse collapse" aria-labelledby="heading{{i+10}}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                        <strong class="text-muted">投稿がまだありません。投稿してランクインしよう！</strong>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="container-sm chigau text-warning">
+        <form action="/database" method="post">
+            <input class="numberboxresize" name="usermonth" type="number">
+            月
+            <input class="numberboxresize" name="userday" type="number">
+            日
+            <button type="submit" class="btn btn-primary">検索</button>
+        </form>
+    </div>
+
+    <div class="container-sm chigau">
+        <p class="h5">共感あり？同じものを<a href="/poll">投稿</a>しましょう！</p>
+        </br>
+        <p class="h5">共感なしなら、あなたが思う「何の日」を<a href="/poll">投稿</a>しましょう！</p>
+    </div>
+
+{% endblock %}

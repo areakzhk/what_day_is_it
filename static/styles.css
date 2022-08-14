@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+    color: #dddddd;
+    font-family:serif;
+}
+
+#maintitle {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#navlink1 {
+    font-size: 1.3em;
+    color: #dddddd;
+}
+
+#banner {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.chigau {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.numberboxresize {
+    width: 40px;
+}
+
+#ranking {
+    margin-top: 1.5em;
+}
+
+#toukoubutton {
+    margin-left: 1em;
+}
+
+#votecount{
+    margin-left: 1em;
+    margin-right: 1em;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color: #cccccc;
+}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <div class="container-sm chigau">
+        <p class="h3 text-white">〇月〇日 は「〇〇の日」って発信しよう！</p>
+    </div>
+
+    <div class="container-sm chigau">
+        <form action="/poll" method="post">
+            <input class="numberboxresize" name="usermonth" type="number">月
+            <input class="numberboxresize"name="userday" type="number">日は
+            </br>
+            <input name="dayname" type="text">！
+            <button type="submit" class="btn btn-primary">投稿</button>
+        </form>
+    </div>
+
+    <div class="container-sm chigau">
+        <a class="text-warning" href="/database">何の日DB(検索画面)へ戻る</a>
+    </div>
+
+    <div class="container-sm chigau">
+        <a href="/">ホームへ戻る</a>
+    </div>
+{% endblock %}

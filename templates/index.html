@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div class="container-sm">
+        <ol class="list-group list-group-numbered">
+            {% for i in range(numberofitems): %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold"> {{ item_list[i] }} </div>
+                        <a href="https://www.google.com/search?q={{item_list[i]}}">{{item_list[i]}}とは</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill"> {{ count_list[i] }} </span>
+                </li>
+            {% endfor %}
+            {% if numberofitems < 3: %}
+                {% for j in range(3 - numberofitems): %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold"> 情報なし。「今日は〇〇の日」ってツイートしよう！ </div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill"> n </span>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ol>
+    </div>
+
+    <h3 class="chigau">違う気がする？ならば、あなたにとって今日は何の日？</h3>
+    <div class="container-sm">
+        <p>今日は</p>
+        <form action="/" method="post">
+            <input type="text" autocomplete="off" placeholder="〇〇〇〇" id="user_day" name="user_day">
+            <button id="toukoubutton" type="submit" class="btn btn-primary">投稿</button>
+        </form>
+        <p>かと思う！</p>
+    </div>
+
+{% endblock %}
